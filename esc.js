@@ -22,11 +22,15 @@ const login = [
 ];
 
 const register = (ans) => {
-  let data = {
+  let users = fs.readFileSync(path.resolve(__dirname, "user.json"));
+  users = JSON.parse(users);
+  let data = users;
+  let newData = {
     name: ans.name,
     email: ans.email,
     password: ans.password,
   };
+  data.push(newData);
   data = JSON.stringify(data);
   fs.openSync(path.resolve(__dirname, "user.json"));
   fs.writeFileSync(path.resolve(__dirname, "user.json"), data);
