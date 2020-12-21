@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 const program = require("commander");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
