@@ -30,7 +30,7 @@ $ esc --version
 
 $ esc help
 Usage :-
-$ esc add   # Goes through a series of questions to send email.
+$ esc send   # Goes through a series of questions to send email.
 $ esc ls    # Show last 5 sent emails
 
 ```
