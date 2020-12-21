@@ -25,12 +25,12 @@
 <h2>Usage</h2>
 
 ```
-$ esc --version
+$ emsc --version
 1.0.0
 
-$ esc help
+$ emsc help
 Usage :-
-$ esc send   # Goes through a series of questions to send email.
-$ esc ls    # Show last 5 sent emails
+$ emsc send   # Goes through a series of questions to send email.
+$ emsc ls     # Show last 5 sent emails
 
 ```
