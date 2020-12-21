@@ -1,49 +1,68 @@
 const program = require("commander");
+const nodemailer = require("nodemailer");
 const fs = require("fs");
 const path = require("path");
 const { prompt } = require("inquirer");
 
-const login = [
-  {
-    type: "input",
-    name: "name",
-    message: "Enter your name",
-  },
+const question = [
   {
     type: "input",
     name: "email",
-    message: "Enter email id",
+    message: "Enter your email id",
   },
   {
     type: "password",
     name: "password",
-    message: "Enter password",
+    message: "Enter your Password",
+  },
+  {
+    type: "input",
+    name: "reciever",
+    message: "Enter reciever's email address",
+  },
+  {
+    type: "input",
+    name: "subject",
+    message: "Enter Subject of the message",
+  },
+  {
+    type: "input",
+    name: "body",
+    message: "Enter body of the message",
   },
 ];
 
-const register = (ans) => {
-  fs.openSync(path.resolve(__dirname, "user.json"));
-  let users = fs.readFileSync(path.resolve(__dirname, "user.json"));
-  users = JSON.parse(users);
-  let data = users;
-  let newData = {
-    name: ans.name,
-    email: ans.email,
-    password: ans.password,
+const send = async (ans) => {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: ans.email,
+      pass: ans.password,
+    },
+  });
+  let mailOptions = {
+    from: ans.email,
+    to: ans.reciever,
+    subject: ans.subject,
+    text: ans.body,
   };
-  data.push(newData);
-  data = JSON.stringify(data);
-  fs.writeFileSync(path.resolve(__dirname, "user.json"), data);
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Email Sent Successfully:" + info.response);
+    }
+  });
 };
 
 program.version("1.0.0").description("A CLI to send Emails locally");
 
 program
-  .command("register")
-  .alias("r")
-  .description("Register")
+  .command("send")
+  .alias("s")
+  .description("Send")
   .action(() => {
-    prompt(login).then((answers) => register(answers));
+    prompt(question).then((answers) => send(answers));
   });
 
 program.parse(process.argv);

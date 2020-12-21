@@ -23,6 +23,7 @@
   "homepage": "https://github.com/amohapatra123/Email_Sender_CLI#readme",
   "dependencies": {
     "commander": "^6.2.1",
-    "inquirer": "^7.3.3"
+    "inquirer": "^7.3.3",
+    "nodemailer": "^6.4.17"
   }
 }
