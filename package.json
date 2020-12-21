@@ -1,5 +1,5 @@
 {
-  "name": "esc",
+  "name": "emsc",
   "version": "1.0.0",
   "description": "A Email sending CLI to send emails locally",
   "main": "esc.js",
