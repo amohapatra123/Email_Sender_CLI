@@ -1,0 +1,28 @@
+{
+  "name": "esc",
+  "version": "1.0.0",
+  "description": "A Email sending CLI to send emails locally",
+  "main": "esc.js",
+  "preferGlobal": true,
+  "bin": "./esc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amohapatra123/Email_Sender_CLI.git"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "author": "Anshuman Mohapatra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amohapatra123/Email_Sender_CLI/issues"
+  },
+  "homepage": "https://github.com/amohapatra123/Email_Sender_CLI#readme",
+  "dependencies": {
+    "commander": "^6.2.1",
+    "inquirer": "^7.3.3"
+  }
+}
