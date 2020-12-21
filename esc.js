@@ -72,6 +72,21 @@ const send = async (ans) => {
   });
 };
 
+const listMails = () => {
+  try {
+    fs.openSync(path.resolve(__dirname, "mail.json"));
+    let data = fs.readFileSync(path.resolve(__dirname, "mail.json"));
+    data = JSON.parse(data);
+    if (data.length > 0) {
+      console.log(data);
+    } else {
+      throw "You have not yet sent any emails.";
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 program.version("1.0.0").description("A CLI to send Emails locally");
 
 program
@@ -80,6 +95,14 @@ program
   .description("Send")
   .action(() => {
     prompt(question).then((answers) => send(answers));
+  });
+
+program
+  .command("ls")
+  .alias("l")
+  .description("List last 5 emails sent")
+  .action(() => {
+    listMails();
   });
 
 program.parse(process.argv);
