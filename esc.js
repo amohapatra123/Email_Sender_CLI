@@ -50,6 +50,23 @@ const send = async (ans) => {
     if (err) {
       console.log(err);
     } else {
+      fs.openSync(path.resolve(__dirname, "mail.json"));
+      let last = fs.readFileSync(path.resolve(__dirname, "mail.json"));
+      last = JSON.parse(last);
+      if (last.length >= 5) {
+        last = last.slice(last.length - 1);
+      }
+      let mail = {
+        Sender: ans.email,
+        Reciever: ans.reciever,
+        Subject: ans.subject,
+        Body: ans.body,
+        Info: info.response,
+      };
+
+      last.unshift(mail);
+      last = JSON.stringify(last);
+      fs.writeFileSync(path.resolve(__dirname, "mail.json"), last);
       console.log("Email Sent Successfully:" + info.response);
     }
   });
