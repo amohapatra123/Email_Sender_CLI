@@ -88,7 +88,7 @@ const listMails = () => {
   }
 };
 
-program.version("1.0.0").description("A CLI to send Emails locally");
+program.version("1.0.1").description("A CLI to send Emails locally");
 program
   .command("help")
   .alias("h")
@@ -96,7 +96,7 @@ program
   .action(function () {
     console.log("Usage :-");
     console.log(
-      `$ esc add   # Goes through a series of questions to send email.`
+      `$ esc send   # Goes through a series of questions to send email.`
     );
     console.log(`$ esc ls    # Show last 5 sent emails`);
   });
