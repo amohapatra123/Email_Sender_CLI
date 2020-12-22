@@ -49,7 +49,7 @@ const send = async (ans) => {
   };
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
-      console.log(err);
+      console.log(err.message);
     } else {
       fs.openSync(path.resolve(__dirname, "mail.json"));
       let last = fs.readFileSync(path.resolve(__dirname, "mail.json"));
@@ -88,7 +88,7 @@ const listMails = () => {
   }
 };
 
-program.version("1.0.1").description("A CLI to send Emails locally");
+program.version("1.0.3").description("A CLI to send Emails locally");
 program
   .command("help")
   .alias("h")
