@@ -1,6 +1,6 @@
 {
   "name": "emsc",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Email sending CLI to send emails locally",
   "main": "esc.js",
   "preferGlobal": true,
