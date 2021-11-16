@@ -31,6 +31,25 @@ const question = [
     name: "body",
     message: "Enter body of the message",
   },
+  {
+    type: "list",
+    name: "attach",
+    message: "Do you want to send an attachment",
+    choices: ["yes", "no"],
+    default: "no",
+  },
+  {
+    type: "input",
+    name: "path",
+    message: "Enter path to the folder",
+    when: (answers) => answers.attach === "yes",
+  },
+  {
+    type: "input",
+    name: "file",
+    message: "Enter name of file",
+    when: (answers) => answers.attach === "yes",
+  },
 ];
 
 const send = async (ans) => {
@@ -46,6 +65,12 @@ const send = async (ans) => {
     to: ans.reciever,
     subject: ans.subject,
     text: ans.body,
+    attachment: [
+      {
+        filename: ans.file,
+        path: ans.path,
+      },
+    ],
   };
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
@@ -95,10 +120,8 @@ program
   .description("Help")
   .action(function () {
     console.log("Usage :-");
-    console.log(
-      `$ esc send   # Goes through a series of questions to send email.`
-    );
-    console.log(`$ esc ls    # Show last 5 sent emails`);
+    console.log(`$ emsc send  # Goes through a series of questions to send email.`);
+    console.log(`$ emsc ls    # Show last 5 sent emails`);
   });
 
 program
